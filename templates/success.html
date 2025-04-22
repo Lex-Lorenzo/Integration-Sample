@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+        <title>HubSpot OAuth Success</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #f5f5f5;
+            }
+            .container {
+                background-color: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                color: #ff7a59;
+                text-align: center;
+            }
+            .success-message {
+                color: #4caf50;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .token-section {
+                background-color: #f8f9fa;
+                padding: 15px;
+                border-radius: 4px;
+                margin-top: 20px;
+            }
+            .token-label {
+                font-weight: bold;
+                color: #333;
+            }
+            .token-value {
+                word-break: break-all;
+                padding: 10px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                margin-top: 5px;
+            }
+            .close-button {
+                display: block;
+                width: 200px;
+                margin: 20px auto;
+                padding: 10px;
+                background-color: #ff7a59;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>HubSpot Integration</h1>
+            <div class="success-message">✅ Authentication Successful!</div>
+
+            <div class="token-section">
+                <div class="token-label">Access Token:</div>
+                <div class="token-value">{{ tokens.access_token }}</div>
+
+                <div class="token-label">Refresh Token:</div>
+                <div class="token-value">{{ tokens.refresh_token }}</div>
+
+                <div class="token-label">Expires In:</div>
+                <div class="token-value">{{ tokens.expires_in }} seconds</div>
+
+                <div class="token-label">Token Type:</div>
+                <div class="token-value">{{ tokens.token_type }}</div>
+            </div>
+        </div>
+    </body>
+</html>

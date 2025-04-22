@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Update Contact</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .info-group {
+            margin-bottom: 20px;
+        }
+
+        .label {
+            color: #7f8c8d;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        a {
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Contact</h1>
+    <form class="card" method="post" action="/update-contact">
+        <!-- Hidden ID to send with the form -->
+        <input type="hidden" name="contact_id" value="{{ contact.id }}" />
+
+        <div class="info-group">
+            <div class="label">First Name:</div>
+            <input type="text" name="first_name" value="{{ contact.properties.firstname }}" required />
+        </div>
+
+        <div class="info-group">
+            <div class="label">Last Name:</div>
+            <input type="text" name="last_name" value="{{ contact.properties.lastname }}" required />
+        </div>
+
+        <div class="info-group">
+            <div class="label">Email:</div>
+            <input type="email" name="email" value="{{ contact.properties.email }}" required />
+        </div>
+
+        <div class="info-group">
+            <div class="label">Contact Number:</div>
+            <input type="text" name="phone" value="{{ contact.properties.phone }}" />
+        </div>
+
+        <div class="info-group">
+            <div class="label">Created Date:</div>
+            <input type="text" value="{{ contact.properties.createdate }}" disabled />
+        </div>
+
+        <div class="info-group">
+            <div class="label">Last Modified:</div>
+            <input type="text" value="{{ contact.properties.lastmodifieddate }}" disabled />
+        </div>
+
+        <button class="submit-btn" type="submit">Update Contact</button>
+    </form>
+
+    <a href="/get-all-contacts">← Back to All Contacts</a>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hubspot Integrations</title>
+        <style>
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f6f8;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-height: 100vh;
+            }
+
+            h1 {
+                color: #2c3e50;
+                margin-top: 60px;
+                margin-bottom: 30px;
+            }
+
+            button {
+                background-color: #ff7a59;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 16px;
+                margin: 10px 0;
+                transition: background-color 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #e76645;
+            }
+
+            a h3 {
+                color: #3498db;
+                text-decoration: none;
+                margin-top: 30px;
+            }
+
+            a h3:hover {
+                text-decoration: underline;
+            }
+
+            form {
+                background-color: white;
+                padding: 20px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                margin-top: 30px;
+            }
+
+            form h3, form h2 {
+                margin-bottom: 10px;
+                color: #34495e;
+            }
+
+            input[type="text"] {
+                width: 250px;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            input[type="text"]:focus {
+                border-color: #3498db;
+                outline: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to Hubspot Integrations</h1>
+
+        <button onclick="window.location.href='/integrate'">
+            Integrate With HubSpot
+        </button>
+
+        <button onclick="window.location.href='/contacts'">
+            Test API
+        </button>
+
+        <form method="post" action="/refresh-token">
+            <h2>Refresh token</h2>
+            <input
+                type="text"
+                name="refresh_token"
+                placeholder="Place Refresh Token Here"
+                required
+            />
+            <button type="submit">Submit</button>
+        </form>
+
+        <a
+            href="https://developers.hubspot.com/docs/reference/api/crm/objects/contacts/v3"
+            target="_blank"
+        >
+            <h3>Test other apis here</h3>
+        </a>
+    </body>
+</html>

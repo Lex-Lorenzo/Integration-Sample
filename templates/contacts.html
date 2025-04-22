@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Hubspot Contact Manager</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-top: 60px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            width: 320px;
+        }
+
+        form h3 {
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff7a59;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e76645;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Hubspot Contacts</h1>
+
+    <!-- Get Contact -->
+    <form action="/get-contact" method="post">
+        <h3>Get a Contact by ID</h3>
+        <!-- <input type="text" name="access_key" placeholder="Access Key" required /> -->
+        <input type="text" name="contact_id" placeholder="Contact ID" required />
+        <button type="submit">Get Contact</button>
+    </form>
+
+    <!-- Get All Contacts -->
+    <form action="/get-all-contacts" method="get">
+        <h3>Get All Contacts</h3>
+        <!-- <input type="text" name="access_key" placeholder="Access Key" required /> -->
+        <button type="submit">Fetch All</button>
+    </form>
+
+    <!-- Post Contact -->
+    <form action="/create-contact" method="post">
+        <h3>Create a Contact</h3>
+        <input type="text" name="first_name" placeholder="First Name" required />
+        <input type="text" name="last_name" placeholder="Last Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="access_key" placeholder="Access Key" required />
+        <input type="text" name="phone" placeholder="Phone Number" required />
+        <button type="submit">Create Contact</button>
+    </form>
+
+    <!-- Update Contact -->
+    <form action="/update-contact" method="post">
+        <h3>Update a Contact</h3>
+        <input type="text" name="contact_id" placeholder="Contact ID" required />
+        <input type="text" name="first_name" placeholder="First Name" required />
+        <input type="text" name="last_name" placeholder="Last Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="access_key" placeholder="Access Key" required />
+        <input type="text" name="phone" placeholder="Phone Number" required />
+        <button type="submit">Update Contact</button>
+    </form>
+</body>
+</html>
