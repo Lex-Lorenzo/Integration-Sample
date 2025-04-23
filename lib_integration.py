@@ -19,14 +19,17 @@ async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.get("/integrate")
-def get_hubspot_oauth_url():
+def get_hubspot_oauth_url(request: Request):
     params = {
         "client_id": getenv('CLIENT_ID'),
         "redirect_uri": getenv('REDIRECT_URI'),
         "scope": "oauth crm.objects.contacts.read crm.objects.contacts.write crm.schemas.contacts.read crm.schemas.contacts.write",
         "response_type": "code"
     }
-    return RedirectResponse(f"https://app.hubspot.com/oauth/authorize?{urlencode(params)}")
+    oauth_url = f"https://app.hubspot.com/oauth/authorize?{urlencode(params)}"
+    return templates.TemplateResponse(
+        "open_in_new_tab.html", {"request": request, "oauth_url": oauth_url}
+    )
 
 @app.get("/hubspot/oauth/callback")
 async def auth_callback(request: Request, code: str):
@@ -124,6 +127,7 @@ def refresh_hubspot_token(request: Request, refresh_token: str = Form(...)):
 def return_contacts(request: Request):
     return templates.TemplateResponse("contacts.html", {"request": request})
 
+
 @app.get("/get-all-contacts", response_class=HTMLResponse)
 async def get_contacts(request: Request):
     try:
@@ -151,6 +155,12 @@ async def get_contact_by_id(request: Request, access_key: str = Form(...), conta
 
         client = hubspot.Client.create(access_token=access_key)
 
+        all_props = client.crm.properties.core_api.get_all(object_type="contacts")
+
+        property_names = [prop.name for prop in all_props.results]
+
+        print("Property names:", property_names)
+
         api_response = client.crm.contacts.basic_api.get_by_id(contact_id, properties=["firstname", "lastname", "email", "phone"])
         print(f"Contact Retrieved: {api_response}")
 
@@ -171,6 +181,12 @@ async def get_contact_by_id(request: Request, contact_id: str):
         print(f"Contact ID Received: {contact_id}")
 
         client = hubspot.Client.create(access_token=access_key)
+
+        all_props = client.crm.properties.core_api.get_all(object_type="contacts")
+
+        property_names = [prop.name for prop in all_props.results]
+
+        print("Property names:", property_names)
 
         api_response = client.crm.contacts.basic_api.get_by_id(contact_id, properties=["firstname", "lastname", "email", "phone"])
         print(f"Contact Retrieved: {api_response}")
